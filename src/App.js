@@ -1,25 +1,35 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { BrowserRouter, Switch, Route} from 'react-router-dom';
+import NavbarComponent from './components/navigation/Navbar';
+import UserProfile from './components/view/profile/UserProfile';
+import Dashboard from './components/view/dashbord/Dashbord';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+class App extends Component {
+  componentDidMount(){
+    document.title = "Tidsbanken"
+  }
 
+  render() {
+    return (
+        <BrowserRouter>
+          <div style={{overflowX:"hidden"}}>
+          <NavbarComponent />
+            <div className="container" style={{paddingTop:"100px"}}>
+              <Switch>
+                <Route path="/" exact>
+                <Dashboard />
+                </Route>
+                  <Route path="/profile" exact>
+                  <UserProfile/>
+                </Route>
+              </Switch>
+            </div>
+          
+          </div>
+        </BrowserRouter>
+    );
+  }
+}
 export default App;
+

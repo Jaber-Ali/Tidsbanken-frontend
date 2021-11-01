@@ -1,0 +1,1 @@
+const BASE_API_URL = "https://tidsbanken-experis.azurewebsites.net/api/"
