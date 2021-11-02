@@ -4,19 +4,6 @@ import interactionPlugin from "@fullcalendar/interaction"
 import { useEffect, useState } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 
-//css for modal
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'white',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-}
-
 
 const CalendarComponent = () => {
 
@@ -48,26 +35,26 @@ const CalendarComponent = () => {
         {
             title: "Kicki", 
             start: "2021-11-26", 
-            end: "2021-10-30",
-            color: "#fa6969"
+            end: "2021-12-04",
+            color: "#d9534f"
         },
         {
             title: "Jaber", 
             start: "2021-11-10", 
             end: "2021-11-19",
-            color: "#fa6969"
+            color: "#d9534f"
         },
         {
             title: "Inegible", 
             start: "2021-11-01", 
             end: "2021-11-09",
-            color: "#5fd461"
+            color: "#5cb85c"
         },
         {
             title: "Inegible", 
             start: "2021-11-22", 
             end: "2021-11-24",
-            color: "#5fd461"
+            color: "#5cb85c"
         }
         
     ]
