@@ -16,7 +16,8 @@ const NavbarComponent = () => {
   };
   return (
     <Navbar bg="navbar navbar-primary bg-primary" expand="lg" fixed="top">
-      <Navbar.Brand as={Link} to="/"><FontAwesomeIcon icon={faClock}></FontAwesomeIcon> Tidsbanken</Navbar.Brand>
+      <Navbar.Brand as={Link} to="/"><FontAwesomeIcon icon={faClock} id="icon"></FontAwesomeIcon> 
+      <a class="navbar-brand" id ="title" > Tidsbanken</a></Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse>
         <Nav className="me-auto"></Nav>
