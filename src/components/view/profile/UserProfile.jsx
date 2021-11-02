@@ -20,8 +20,8 @@ const UserProfile = () => {
             <div class="e-profile">
               <div class="row">
                 <div class="col-12 col-sm-auto mb-3">
-                  <div class="mx-auto" style={{width: '140px'}}>
-                    <div class="d-flex justify-content-center align-items-center rounded" style={{height: '140px' , backgroundColor: 'rgb(233, 236, 239)'}}>
+                  <div class="mx-auto" style={{width: '180px'}}>
+                    <div class="d-flex justify-content-center align-items-center rounded" style={{height: '180px' , backgroundColor: 'rgb(233, 236, 239)'}}>
                       <span style={{color: 'rgb(166, 168, 170)' , font: 'bold 8pt Arial'}}>140x140</span>
                     </div>
                   </div>
@@ -75,10 +75,7 @@ const UserProfile = () => {
                         </div>
                         <div class="row">
                           <div class="col mb-3">
-                            <div class="form-group">
-                              <label>About</label>
-                              <textarea class="form-control" rows="5" placeholder="My Bio"></textarea>
-                            </div>
+                            
                           </div>
                         </div>
                       </div>

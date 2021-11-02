@@ -9,14 +9,14 @@ import "./Navbar.css";
 
 const NavbarComponent = () => {
 
-  const [isLoggedIn, setIsLoggedIn] = useState(KeycloakService.isLoggedIn());
+  const [isLoggedIn] = useState(KeycloakService.isLoggedIn());
 
   const handleLogout = () => {
     KeycloakService.doLogout();
   };
   return (
     <Navbar bg="navbar navbar-primary bg-primary" expand="lg" fixed="top">
-      <Navbar.Brand as={Link} to="/"><FontAwesomeIcon icon={faClock}></FontAwesomeIcon>Tidsbanken</Navbar.Brand>
+      <Navbar.Brand as={Link} to="/"><FontAwesomeIcon icon={faClock}></FontAwesomeIcon> Tidsbanken</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse>
         <Nav className="me-auto"></Nav>
