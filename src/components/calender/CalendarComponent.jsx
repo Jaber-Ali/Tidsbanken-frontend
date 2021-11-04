@@ -3,6 +3,7 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from "@fullcalendar/interaction"
 import { useEffect, useState } from 'react'
 import { Modal, Button } from 'react-bootstrap'
+import { fetchAllRequests } from '../../services/API'
 
 
 const CalendarComponent = () => {
@@ -16,18 +17,18 @@ const CalendarComponent = () => {
     const handleOpen = () => setOpen(true)
     const handleClose = () => setOpen(false)
 
-    // //fetches all approved requests from the database
-    // useEffect(() => {
-    //     fetchAllRequests()
-    //     .then(data => {
-    //         console.log(data)
-    //         let arr = []
-    //         for(let i = 0; i < data.length; i++) {
-    //             arr.push(data[i])
-    //         }
-    //         setApprovedRequests(arr)
-    //     })
-    // },[])
+    //fetches all approved requests from the database
+    useEffect(() => {
+        fetchAllRequests()
+        .then(data => {
+            console.log(data)
+            let arr = []
+            for(let i = 0; i < data.length; i++) {
+                arr.push(data[i])
+            }
+            setApprovedRequests(arr)
+        })
+    },[])
 
 
     //hard-coded periods
