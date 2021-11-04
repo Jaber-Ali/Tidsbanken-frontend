@@ -1,14 +1,13 @@
 import CalendarComponent from "../../calender/CalendarComponent"
 import { useState} from "react"
 import { useSelector } from "react-redux"
-//import { useKeycloak } from "@react-keycloak/web"
 import { Button, Modal, Col, Row } from 'react-bootstrap'
 import DayPickerInput from 'react-day-picker/DayPickerInput'
 import 'react-day-picker/lib/style.css'
+import KeycloakService from "../../../services/KeyclockService"
+import { postRequest } from "../../../services/API"
 
 const Dashboard = () => {
-
-    //const keycloak = useKeycloak()
 
     const user = useSelector((state) => state.user)
 
@@ -16,6 +15,7 @@ const Dashboard = () => {
     const [openInegiblePeriod, setOpenInegiblePeriod] = useState(false)
     const [startDate, setStartDate] = useState(new Date())
     const [endDate, setEndDate] = useState(new Date())
+
 
     const handleOpenVacation = () => {
         setOpenVacationRequest(true)
@@ -26,8 +26,15 @@ const Dashboard = () => {
     }
 
     const requestVacation = () => {
-        console.log("Vacation request sent")
-        console.log(startDate, endDate)
+        const requestBody = {
+            periodStart: startDate.toISOString().slice(0,10),
+            periodEnd: endDate.toISOString().slice(0,10),
+            title: 'Vacation request',
+            requestStatus: 0,
+            ownerEmail: user.email,
+            moderatorEmail: "admin@admin.com"
+        }
+        postRequest(requestBody)
         handleCloseVacation()
     }
 
@@ -46,8 +53,13 @@ const Dashboard = () => {
    
     return (
         <div style={{textAlign:"center"}}>
-            <Button onClick={handleOpenInegible} variant="success">Create new inegible period</Button>{' '}<Button onClick={handleOpenVacation} variant="success">New vacation request</Button>
-
+            {KeycloakService.hasRole(['admin']) ? (
+                <Button onClick={handleOpenInegible} variant="success">Create new inegible period</Button>
+            ) : (
+                <Button onClick={handleOpenVacation} variant="success">New vacation request</Button>
+            )}
+            
+            <Button onClick={handleOpenVacation} variant="success">TEST VACATION POST</Button>
             {/* Vacation request */}
             <Modal show={openVactaionRequest} onHide={handleCloseVacation} >
                 <Modal.Header closeButton>
