@@ -22,6 +22,15 @@ const NavbarComponent = () => {
       <Navbar.Collapse>
         <Nav className="me-auto"></Nav>
         <Nav>
+
+            <Button
+                variant="primary"
+                id="btn"
+                onClick={() => console.log(KeycloakService.getToken())}
+            >
+                getToken
+            </Button>
+
            {/* Log In button */}
            {!isLoggedIn && (
             <Button
