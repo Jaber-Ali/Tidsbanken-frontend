@@ -8,10 +8,16 @@ import { fetchAllRequests } from '../../services/API'
 
 const CalendarComponent = () => {
 
-    const [approvedRequests, setApprovedRequests] = useState([])
+    const [allRequests, setAllRequests] = useState([])
     const [inegibleDates, setInegibleDates] = useState([])
-    const [open, setOpen] = useState(false)
+    const [vacations, setVacations] = useState([{
+        title: 'hardcoded',
+        start: '2021-11-26',
+        end: '2021-11-30',
+        color: '#d9534f'
+    }])
     //for modal
+    const [open, setOpen] = useState(false)
     const [periodInfo, setPeriodInfo] = useState([])
     
     const handleOpen = () => setOpen(true)
@@ -21,15 +27,34 @@ const CalendarComponent = () => {
     useEffect(() => {
         fetchAllRequests()
         .then(data => {
-            console.log(data)
             let arr = []
             for(let i = 0; i < data.length; i++) {
                 arr.push(data[i])
             }
-            setApprovedRequests(arr)
+            setAllRequests(arr)
         })
+        adminRequestView()
     },[])
 
+    //if user is logged in show only approved vacations
+    
+
+    //if admin is logged in show all requests - TODO doesnt render in calendar!
+    const adminRequestView = () => {
+        console.log(allRequests)
+        let arr = []
+        for(let i = 0; i < allRequests.length; i++) {
+            let vacationObject = {
+                title: allRequests[i].title,
+                start: allRequests[i].periodStart,
+                end: allRequests[i].periodEnd,
+                //color should change
+                color: '#d9534f'
+            }
+        arr.push(vacationObject)    
+        }
+        setVacations(vacations => [...vacations, arr])
+    }
 
     //hard-coded periods
     const myEventsList = [
@@ -76,15 +101,21 @@ const CalendarComponent = () => {
         )
     } 
 
+    const testButton = () => {
+        console.log(vacations)
+        console.log(myEventsList)
+    }
+
 
     return(
         <div className="calendar">
+            <button onClick={testButton}>test</button>
             <br/>
         
             <FullCalendar
                 plugins={[ dayGridPlugin, interactionPlugin ]}
                 initialView="dayGridMonth"
-                events={myEventsList}
+                events={vacations}
                 eventContent={renderEventContent}
                 dateClick={handleDateClick}
             />
